@@ -285,7 +285,7 @@ export function ElectricalHomepage() {
               />
               <div className="photo-badge">
                 <span>LOCAL &amp; RELIABLE</span>
-                <strong>Dallas, TX</strong>
+                <strong>Lagos, Nigeria</strong>
               </div>
             </div>
             <div className="benefit-list">
@@ -320,7 +320,7 @@ export function ElectricalHomepage() {
               </span>
               <span>
                 <small>Need help right now?</small>
-                <strong>(555) 123-4567</strong>
+                <strong>(+235) 898 123-4567</strong>
               </span>
               <ArrowUpRight
                 aria-hidden="true"
