@@ -9,13 +9,16 @@ export type BookingState = {
 }
 
 const services = new Set([
-  'Emergency electrical repair',
-  'Electrical panel upgrade',
-  'Wiring & rewiring',
-  'Lighting installation',
-  'Outlet & switch repair',
-  'Commercial electrical',
-  'Electrical inspection',
+  'Electrical installation',
+  'Industrial electrical services',
+  'Electrical maintenance and troubleshooting',
+  'Solar inverter system',
+  'Solar panel installation',
+  'Solar water pumping system',
+  'Electrical equipment and materials',
+  'Control panels and electrical systems',
+  'CCTV and security system',
+  'Electrical consultancy and project support',
   'Other electrical service',
 ])
 
@@ -89,7 +92,7 @@ export async function submitBooking(
 
     return {
       status: 'success',
-      message: 'Thanks — your request is in. Our Dallas team will contact you shortly to confirm a time.',
+      message: 'Thanks — your request is in. Habitech Power Limited will contact you shortly to discuss your project.',
     }
   } catch {
     return {

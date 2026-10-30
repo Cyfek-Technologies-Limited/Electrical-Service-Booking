@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'WattEdge Solutions | Dallas Electricians & 24/7 Emergency Service',
-  description: 'Reliable electrical repairs, installations, and upgrades in Dallas, TX. Request a free estimate from licensed, insured local electricians — available 24/7 for emergencies.',
+  title: 'Habitech Power Limited | Electrical & Solar Services in Lagos',
+  description: 'Habitech Power Limited provides electrical installation, maintenance, solar inverter, solar panel, water pumping, CCTV, and industrial electrical services in Lagos and across Nigeria.',
   generator: 'v0.app',
   icons: {
     icon: [

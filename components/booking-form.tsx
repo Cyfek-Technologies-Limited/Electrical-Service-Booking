@@ -12,7 +12,7 @@ export function BookingForm() {
   return (
     <form action={formAction} className="booking-form">
       <div className="form-intro">
-        <span className="eyebrow">REQUEST A VISIT</span>
+        <span className="eyebrow">REQUEST A QUOTATION</span>
         <h3>Let’s get it sorted.</h3>
         <p>Tell us a little about the job. We’ll be in touch to confirm the details.</p>
       </div>
@@ -24,7 +24,7 @@ export function BookingForm() {
         </label>
         <label className="field">
           <span>Phone number</span>
-          <input autoComplete="tel" maxLength={40} name="phone" placeholder="(214) 555-0100" required type="tel" />
+          <input autoComplete="tel" maxLength={40} name="phone" placeholder="0703 766 9919" required type="tel" />
         </label>
         <label className="field field-full">
           <span>Email address</span>
@@ -34,13 +34,16 @@ export function BookingForm() {
           <span>What can we help with?</span>
           <select defaultValue="" name="service" required>
             <option disabled value="">Select a service</option>
-            <option>Emergency electrical repair</option>
-            <option>Electrical panel upgrade</option>
-            <option>Wiring &amp; rewiring</option>
-            <option>Lighting installation</option>
-            <option>Outlet &amp; switch repair</option>
-            <option>Commercial electrical</option>
-            <option>Electrical inspection</option>
+            <option>Electrical installation</option>
+            <option>Industrial electrical services</option>
+            <option>Electrical maintenance and troubleshooting</option>
+            <option>Solar inverter system</option>
+            <option>Solar panel installation</option>
+            <option>Solar water pumping system</option>
+            <option>Electrical equipment and materials</option>
+            <option>Control panels and electrical systems</option>
+            <option>CCTV and security system</option>
+            <option>Electrical consultancy and project support</option>
             <option>Other electrical service</option>
           </select>
         </label>
@@ -85,7 +88,7 @@ export function BookingForm() {
 
       <button className="button button-primary form-submit" disabled={isPending || state.status === 'success'} type="submit">
         {isPending ? <LoaderCircle aria-hidden="true" className="spin" size={18} /> : <Send aria-hidden="true" size={17} />}
-        {isPending ? 'Sending request…' : state.status === 'success' ? 'Request received' : 'Request a free estimate'}
+        {isPending ? 'Sending request…' : state.status === 'success' ? 'Request received' : 'Request a quotation'}
       </button>
       <p className="form-privacy">Your information stays with our team. No spam, ever.</p>
     </form>
