@@ -212,7 +212,7 @@ function Hero() {
         <p className="mb-4 text-[10px] font-extrabold uppercase leading-tight tracking-[.16em] text-habitech-green-bright">
           HABITECH POWER LIMITED · RC 9546738
         </p>
-        <h1 className="max-w-[650px] text-[4rem] font-bold leading-[1.1] tracking-[-.055em] md:text-[3.2rem]">
+        <h1 className="max-w-[650px] text-[2.5rem] font-bold leading-[1.1] tracking-[-.055em] md:text-[3.2rem]">
           Powering your world with{" "}
           <span className="text-habitech-green-bright">
             reliable electrical solutions.
