@@ -208,7 +208,9 @@ function Hero() {
         src="/electrician-hero.png"
       />
       <div aria-hidden="true" className="hero-shade" />
-      <div className={`${wrap} pb-[68px] pt-0 md:py-[80px] md:pb-[88px]`}>
+      <div
+        className={`${wrap} pb-[68px] pt-0 md:py-[80px] md:mb-0 mb-[4.6rem] md:pb-[88px]`}
+      >
         <p className="mb-4 text-[10px] font-extrabold uppercase leading-tight tracking-[.16em] text-habitech-green-bright">
           HABITECH POWER LIMITED · RC 9546738
         </p>
