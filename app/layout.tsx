@@ -1,6 +1,13 @@
 import { Analytics } from "@vercel/analytics/next";
+import { Poppins } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Habitech Power Limited | Electrical & Solar Services in Lagos",
@@ -41,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">
+      <body className={`${poppins.className} antialiased`}>
         {children}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>

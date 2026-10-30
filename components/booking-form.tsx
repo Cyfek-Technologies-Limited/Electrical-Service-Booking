@@ -6,13 +6,13 @@ import { submitBooking, type BookingState } from '@/app/actions/bookings'
 
 const initialState: BookingState = { status: 'idle', message: '' }
 const fieldClass = 'min-w-0 flex flex-col gap-1.5 text-[10px] font-bold text-[#3c4348]'
-const controlClass = 'min-h-[42px] w-full border border-[#dfe2e4] bg-white px-3 py-2.5 text-[11px] font-normal text-[#202428] outline-none transition focus:border-habitech-green focus:ring-2 focus:ring-habitech-green/15 placeholder:text-[#9aa1a5]'
+const controlClass = 'min-h-[42px] w-full border-[1px] border-black/30 bg-white px-3 py-2.5 text-[11px] font-normal text-[#202428] outline-none transition focus:border-black/30 focus:ring-2 focus:ring-black/30 placeholder:text-[#9aa1a5]'
 
 export function BookingForm() {
   const [state, formAction, isPending] = useActionState(submitBooking, initialState)
 
   return (
-    <form action={formAction} className="border border-[#e5e7e8] bg-white p-[22px] shadow-[0_18px_50px_rgba(21,29,36,.07)] sm:p-[31px]">
+    <form action={formAction} className="border-[1px] border-black/30 bg-white p-[22px] shadow-[0_18px_50px_rgba(21,29,36,.07)] sm:p-[31px]">
       <div className="mb-5">
         <span className="mb-2 block text-[10px] font-extrabold uppercase tracking-[.16em] text-habitech-green-dark">Request a quotation</span>
         <h3 className="m-0 text-2xl font-semibold tracking-tight">Let’s discuss your project.</h3>
@@ -30,8 +30,8 @@ export function BookingForm() {
       </div>
 
       <div aria-hidden="true" className="absolute h-px w-px overflow-hidden [clip-path:inset(50%)]"><label htmlFor="companyWebsite">Company website</label><input autoComplete="off" id="companyWebsite" name="companyWebsite" tabIndex={-1} /></div>
-      {state.message ? <div aria-live="polite" className={`mt-4 flex items-start gap-2 border px-3 py-2.5 text-[11px] leading-relaxed ${state.status === 'success' ? 'border-[#b8dec6] bg-[#f1faf4] text-[#245b36]' : 'border-[#f0c3bd] bg-[#fff5f3] text-[#8b2c20]'}`} role={state.status === 'error' ? 'alert' : 'status'}>{state.status === 'success' && <CheckCircle2 aria-hidden="true" className="shrink-0" size={18}/>}<span>{state.message}</span></div> : null}
-      <button className="mt-[18px] inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2.5 border-0 bg-habitech-green-bright px-5 text-xs font-extrabold text-[#15191c] transition hover:bg-[#75d53c] disabled:cursor-not-allowed disabled:opacity-70" disabled={isPending || state.status === 'success'} type="submit">{isPending ? <LoaderCircle aria-hidden="true" className="animate-spin" size={18}/> : <Send aria-hidden="true" size={17}/>} {isPending ? 'Sending request…' : state.status === 'success' ? 'Request received' : 'Request a quotation'}</button>
+      {state.message ? <div aria-live="polite" className={`mt-4 flex items-start gap-2 border-[1px] border-black/30 px-3 py-2.5 text-[11px] leading-relaxed ${state.status === 'success' ? 'bg-[#f1faf4] text-[#245b36]' : 'bg-[#fff5f3] text-[#8b2c20]'}`} role={state.status === 'error' ? 'alert' : 'status'}>{state.status === 'success' && <CheckCircle2 aria-hidden="true" className="shrink-0" size={18}/>}<span>{state.message}</span></div> : null}
+      <button className="mt-[18px] inline-flex min-h-12 w-full cursor-pointer items-center justify-center gap-2.5 border-[1px] border-black/30 bg-habitech-green-bright px-5 text-xs font-extrabold text-[#15191c] transition hover:bg-[#75d53c] disabled:cursor-not-allowed disabled:opacity-70" disabled={isPending || state.status === 'success'} type="submit">{isPending ? <LoaderCircle aria-hidden="true" className="animate-spin" size={18}/> : <Send aria-hidden="true" size={17}/>} {isPending ? 'Sending request…' : state.status === 'success' ? 'Request received' : 'Request a quotation'}</button>
       <p className="mt-3 text-center text-[9px] text-[#858d92]">Your information stays with our team. No spam, ever.</p>
     </form>
   )

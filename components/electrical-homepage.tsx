@@ -212,7 +212,7 @@ function Hero() {
         <p className="mb-4 text-[10px] font-extrabold uppercase leading-tight tracking-[.16em] text-habitech-green-bright">
           HABITECH POWER LIMITED · RC 9546738
         </p>
-        <h1 className="max-w-[650px] text-[4rem] font-bold leading-[.99] tracking-[-.055em] md:text-[3.3rem]">
+        <h1 className="max-w-[650px] text-[4rem] font-bold leading-[1.1] tracking-[-.055em] md:text-[3.2rem]">
           Powering your world with{" "}
           <span className="text-habitech-green-bright">
             reliable electrical solutions.
@@ -231,7 +231,7 @@ function Hero() {
             Request a quotation <ArrowRight size={17} />
           </Link>
           <a
-            className="inline-flex min-h-11 items-center justify-center gap-2.5 border border-habitech-green-bright/85 px-4 text-[10px] font-extrabold text-white transition hover:bg-habitech-green/10 sm:min-h-12 sm:px-[21px] sm:text-xs"
+            className="inline-flex min-h-11 items-center justify-center gap-2.5 shadow-md rounded-[10px] border-[1px] border-black/30 px-4 text-[10px] font-extrabold text-white transition hover:bg-habitech-green/10 sm:min-h-12 sm:px-[21px] sm:text-xs"
             href={`tel:${phone1}`}
           >
             <Phone size={16} className="text-habitech-green-bright" />
@@ -270,7 +270,7 @@ function TrustBar() {
     [Building2, "Across Nigeria", "Interstate projects welcome"],
   ] as const;
   return (
-    <div className="border-b border-[#e6e8ea] bg-white" id="service-area">
+    <div className="border-b-[1px] border-black/30 bg-white" id="service-area">
       <div
         className={`${wrap} grid grid-cols-2 gap-y-4 py-5 sm:min-h-[104px] sm:grid-cols-4 sm:items-center sm:gap-y-0 sm:py-0`}
       >
@@ -278,8 +278,12 @@ function TrustBar() {
           <div
             className={`flex min-h-10 items-center gap-2.5 px-2.5 sm:gap-3 sm:px-6 ${
               index === 0 ? "sm:pl-0" : ""
-            } ${index === 3 ? "sm:pr-0" : "sm:border-r sm:border-[#e6e8ea]"} ${
-              index % 2 === 1 ? "border-l border-[#e6e8ea] sm:border-l-0" : ""
+            } ${
+              index === 3 ? "sm:pr-0" : "sm:border-r-[1px] sm:border-black/30"
+            } ${
+              index % 2 === 1
+                ? "border-l-[1px] border-black/30 sm:border-l-0"
+                : ""
             }`}
             key={title}
           >
@@ -364,7 +368,7 @@ function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
       <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-[15px]">
         {cards.map(([Icon, title, text]) => (
           <article
-            className="flex min-h-[220px] flex-col items-start border border-[#e6e8e8] bg-white p-4 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.08)] sm:min-h-[236px] sm:px-[22px] sm:pt-6 sm:pb-[22px]"
+            className="flex min-h-[220px] flex-col items-start shadow-md rounded-[10px] border-[1px] border-black/30 bg-white p-4 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.08)] sm:min-h-[236px] sm:px-[22px] sm:pt-6 sm:pb-[22px]"
             key={title}
           >
             <span className="grid h-[42px] w-[42px] place-items-center bg-[#eff8e8] text-habitech-green-dark">
@@ -382,10 +386,10 @@ function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
     );
   }
   return (
-    <div className="grid grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-[15px]">
+    <div className="grid  grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-[15px]">
       {services.map(({ icon: Icon, title, text }, index) => (
         <article
-          className="flex min-h-[226px] flex-col items-start border border-[#e6e8e8] bg-white p-3 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.08)] sm:min-h-[236px] sm:px-[22px] sm:pt-6 sm:pb-[22px]"
+          className="flex min-h-[226px] flex-col items-start shadow-md rounded-[10px] border-[1px] border-black/30 bg-white p-3 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.08)] sm:min-h-[236px] sm:px-[22px] sm:pt-6 sm:pb-[22px]"
           key={title}
         >
           <div className="flex w-full items-start justify-between">
@@ -416,7 +420,7 @@ function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
 
 export function ElectricalHomepage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-white font-[Arial,Helvetica,sans-serif] text-[15px] leading-[1.55] text-habitech-ink [&_a]:no-underline">
+    <main className="min-h-screen overflow-hidden bg-white text-[15px] leading-[1.55] text-habitech-ink [&_a]:no-underline">
       <SiteHeader />
       <Hero />
       <TrustBar />
@@ -530,7 +534,7 @@ export function ElectricalHomepage() {
               detailed quote before work commences.
             </p>
             <a
-              className="flex max-w-[330px] items-center gap-3 border border-[#e2e4e5] bg-white p-3.5"
+              className="flex max-w-[330px] items-center gap-3 shadow-md rounded-[10px] border-[1px] border-black/30 bg-white p-3.5"
               href={`tel:${phone1}`}
             >
               <span className="grid h-[39px] w-[39px] place-items-center bg-[#eff8e8] text-habitech-green-dark">
@@ -608,7 +612,7 @@ export function ElectricalHomepage() {
           </a>
         </div>
         <div
-          className={`${wrap} flex min-h-[47px] flex-col justify-center gap-0.5 border-t border-white/10 py-2 text-[9px] text-[#879198] sm:flex-row sm:items-center sm:justify-between`}
+          className={`${wrap} flex min-h-[47px] flex-col justify-center gap-0.5 border-t-[1px] border-black/30 py-2 text-[9px] text-[#879198] sm:flex-row sm:items-center sm:justify-between`}
         >
           <span>
             © {new Date().getFullYear()} Habitech Power Limited · RC 9546738.
