@@ -1,6 +1,5 @@
-import { ElectricalHomepage } from '@/components/electrical-homepage'
+import { ElectricalHomepage } from "@/components/electrical-homepage";
 
 export default function Page() {
-  return <ElectricalHomepage />
+  return <ElectricalHomepage />;
 }
-
