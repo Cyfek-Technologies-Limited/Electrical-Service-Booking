@@ -48,6 +48,16 @@
     linear-gradient(0deg, rgba(14, 18, 21, .72), transparent 33%);
 }
 
+@keyframes project-photo-zoom {
+  from { opacity: .45; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes project-copy-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @media (max-width: 720px) {
   .hero-shade {
     background:

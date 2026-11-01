@@ -10,6 +10,7 @@ import {
   ClipboardCheck,
   Droplets,
   Lightbulb,
+  Mail,
   MapPin,
   PanelsTopLeft,
   Phone,
@@ -20,6 +21,9 @@ import {
   Zap,
 } from "lucide-react";
 import { BookingForm } from "@/components/booking-form";
+import { ProjectVideoReel } from "@/components/project-video-reel";
+import { ProjectPhotoSlideshow } from "@/components/project-photo-slideshow";
+import { SocialMediaPopover } from "@/components/social-media-popover";
 
 const phone1 = "07037669919";
 const phone2 = "09055506016";
@@ -85,6 +89,80 @@ const benefits = [
   "Safety-focused, reliable, customer-focused service",
   "Flexible service coverage within and outside Lagos State",
 ];
+const projects = [
+  {
+    image: "/projects/kitchen-lighting.jpeg",
+    alt: "Kitchen fit-out with track lights and under-cabinet lighting",
+    title: "Kitchen electrical fit-out",
+    category: "Residential ‚· Lighting",
+  },
+  {
+    image: "/projects/ambient-living-room-lighting.jpeg",
+    alt: "Living room with recessed ceiling and accent lighting",
+    title: "Living room lighting",
+    category: "Residential ‚· Interior lighting",
+  },
+  {
+    image: "/projects/electrical-control-installation.jpeg",
+    alt: "Electrical control equipment connected with surface conduit",
+    title: "Control equipment installation",
+    category: "Electrical systems",
+  },
+  {
+    image: "/projects/attic-conduit-installation.jpeg",
+    alt: "Blue electrical conduits routed through a roof space",
+    title: "Electrical conduit routing",
+    category: "Residential ‚· Wiring",
+  },
+  {
+    image: "/projects/illuminated-tv-feature-wall.jpeg",
+    alt: "Blue accent lighting integrated into a living-room TV feature wall",
+    title: "Feature wall lighting",
+    category: "Residential ‚· LED lighting",
+  },
+  {
+    image: "/projects/ceiling-lighting-installation.jpeg",
+    alt: "Recessed and cove ceiling lights in a residential interior",
+    title: "Ceiling lighting installation",
+    category: "Residential ‚· Lighting",
+  },
+  {
+    image: "/projects/residential-lighting-fit-out.jpeg",
+    alt: "Interior fit-out with installed ceiling lights and chandelier",
+    title: "Residential fit-out",
+    category: "Residential ‚· Installation",
+  },
+  {
+    image: "/projects/inverter-battery-installation.jpeg",
+    alt: "Installed inverter units and battery storage system",
+    title: "Inverter and battery system",
+    category: "Renewable energy ‚· Backup power",
+  },
+  {
+    image: "/projects/electrical-conduit-site-work.jpeg",
+    alt: "Electrical conduit work in progress on a building site",
+    title: "Conduit work in progress",
+    category: "Building services ‚· Electrical",
+  },
+  {
+    image: "/projects/building-electrical-project.jpeg",
+    alt: "Building project site during electrical infrastructure works",
+    title: "Building project works",
+    category: "Building services ‚· Electrical",
+  },
+  {
+    image: "/projects/distribution-board-installation.jpeg",
+    alt: "Installed residential distribution board with circuit breakers",
+    title: "Distribution board installation",
+    category: "Electrical systems Safety",
+  },
+  {
+    image: "/projects/habi5.jpeg",
+    alt: "Installed residential distribution board with circuit breakers",
+    title: "Distribution board installation",
+    category: "Electrical systems ‚· Safety",
+  },
+];
 const linkClass =
   "text-[10px] font-bold uppercase tracking-[.055em] text-slate-200 transition hover:text-habitech-green-bright";
 const sectionTitle =
@@ -95,7 +173,7 @@ function SiteHeader() {
     <>
       <div className="relative z-[3] bg-[#101316] text-[11px] text-[#e6e7e8]">
         <div
-          className={`${wrap} flex min-h-[37px] items-center justify-between gap-5`}
+          className={`${wrap} flex min-h-[37px] flex-wrap items-center justify-between gap-x-5 gap-y-2 py-2`}
         >
           <span className="inline-flex items-center gap-2">
             <MapPin size={14} className="text-habitech-green" />
@@ -103,8 +181,15 @@ function SiteHeader() {
           </span>
           <span className="hidden items-center gap-2 sm:inline-flex">
             <BadgeCheck size={14} className="text-habitech-green" />
-            Registered company · RC 9546738
+            Registered company‚ RC 9546738
           </span>
+          <a
+            className="hidden items-center gap-2  sm:inline-flex"
+            href="mailto:habitechpowerlimited@gmail.com"
+          >
+            <Mail size={14} className="text-habitech-green" />
+            habitechpowerlimited@gmail.com
+          </a>
           <a
             className="hidden items-center gap-2 font-bold tracking-wide text-habitech-green sm:inline-flex"
             href={`tel:${phone1}`}
@@ -114,7 +199,7 @@ function SiteHeader() {
           </a>
         </div>
       </div>
-      <header className="relative z-[3] flex min-h-[75px] items-center justify-between gap-4 bg-[#171c21] px-4 text-white sm:px-8 xl:px-[max(32px,calc((100vw-1180px)/2))]">
+      <header className="relative z-[3] flex min-h-[74px] items-center justify-between gap-4 bg-[#171c21] px-4 text-white sm:px-8 xl:px-[max(32px,calc((100vw-1180px)/2))]">
         <Link
           aria-label="Habitech Power Limited home"
           className="inline-flex flex-none items-center gap-2"
@@ -123,14 +208,14 @@ function SiteHeader() {
           <Image
             alt=""
             aria-hidden="true"
-            className="h-12 w-12 object-contain"
-            height={56}
+            className="h-16 w-16 object-contain sm:h-[73px] sm:w-[73px]"
+            height={60}
             src="/habitech-logo.jpeg"
-            width={56}
+            width={60}
           />
-          <span className="flex flex-col text-sm font-extrabold leading-none tracking-tight">
+          <span className="flex flex-col text-lg font-extrabold leading-none tracking-tight sm:text-xl">
             Habitech
-            <span className="mt-1 text-[10px] font-medium uppercase tracking-[.09em] text-slate-300">
+            <span className="mt-1 text-[11px] font-medium uppercase tracking-[.09em] text-slate-300 sm:text-xs">
               Power Limited
             </span>
           </span>
@@ -145,12 +230,16 @@ function SiteHeader() {
           <a className={linkClass} href="#services">
             Services
           </a>
+          <a className={linkClass} href="#projects">
+            Our work
+          </a>
           <a className={linkClass} href="#why-us">
             About us
           </a>
-          <a className={linkClass} href="#service-area">
+          {/* <a className={linkClass} href="#service-area">
             Service areas
-          </a>
+          </a> */}
+          <SocialMediaPopover variant="nav" />
         </nav>
         <Link
           className="hidden min-h-[38px] items-center gap-2 bg-white px-4 text-[11px] font-bold text-[#1c2024] transition hover:bg-habitech-green-bright sm:inline-flex"
@@ -173,6 +262,7 @@ function SiteHeader() {
             {[
               ["Home", "#top"],
               ["Services", "#services"],
+              ["Our work", "#projects"],
               ["About us", "#why-us"],
               ["Service areas", "#service-area"],
               ["Request a quote", "#book"],
@@ -185,6 +275,7 @@ function SiteHeader() {
                 {label}
               </a>
             ))}
+            <SocialMediaPopover variant="mobile-nav" />
           </nav>
         </details>
       </header>
@@ -212,7 +303,7 @@ function Hero() {
         className={`${wrap} pb-[68px] pt-0 md:py-[80px] md:mb-0 mb-[4.6rem] md:pb-[88px]`}
       >
         <p className="mb-4 text-[10px] font-extrabold uppercase leading-tight tracking-[.16em] text-habitech-green-bright">
-          HABITECH POWER LIMITED · RC 9546738
+          HABITECH POWER LIMITED ‚RC 9546738
         </p>
         <h1 className="max-w-[650px] text-[2.5rem] font-bold leading-[1.1] tracking-[-.055em] md:text-[3.2rem]">
           Powering your world with{" "}
@@ -252,14 +343,7 @@ function Hero() {
           </span>
         </div>
       </div>
-      <a
-        aria-label="Scroll to our services"
-        className="absolute bottom-5 right-5 flex items-center gap-2 text-[8px] uppercase tracking-[.12em] text-slate-200 sm:bottom-[26px] sm:right-[max(32px,calc((100vw-1180px)/2))] sm:text-[9px]"
-        href="#services"
-      >
-        <span className="h-px w-[26px] bg-habitech-green-bright" />
-        Explore our services
-      </a>
+      {/* <SocialMediaPopover /> */}
     </section>
   );
 }
@@ -348,7 +432,7 @@ function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
       [
         Zap,
         "Our mission",
-        "To provide dependable, safe, and affordable electrical and renewable energy solutions that meet our customers’ needs.",
+        "To provide dependable, safe, and affordable electrical and renewable energy solutions that meet our customers' needs.",
       ],
       [
         Star,
@@ -426,6 +510,8 @@ export function ElectricalHomepage() {
       <SiteHeader />
       <Hero />
       <TrustBar />
+
+      {/* what we do  */}
       <section className="bg-[#f8f8f6] py-[72px] sm:py-[100px]" id="services">
         <div className={wrap}>
           <SectionHeading
@@ -437,6 +523,64 @@ export function ElectricalHomepage() {
           <ServiceGrid />
         </div>
       </section>
+
+      <ProjectPhotoSlideshow />
+
+      <section className="bg-white py-[72px] sm:py-[100px]" id="projects">
+        <div className={wrap}>
+          <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="mb-3 text-[10px] font-extrabold uppercase tracking-[.16em] text-habitech-green-dark">
+                SELECTED PROJECTS
+              </p>
+              <h2 className={sectionTitle}>
+                Work we're proud of,
+                <br />
+                <span className="text-habitech-green">
+                  built for everyday life.
+                </span>
+              </h2>
+            </div>
+            <p className="max-w-[390px] text-xs leading-relaxed text-habitech-muted sm:text-[13px]">
+              A selection of the company’s electrical installations, lighting
+              projects, and backup power systems.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {projects.map((project) => (
+              <article
+                className="group overflow-hidden rounded-[10px] border-[1px] border-black/30 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.1)]"
+                key={project.image}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f3ef]">
+                  <Image
+                    alt={project.alt}
+                    className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    src={project.image}
+                  />
+                </div>
+                <div className="p-4 sm:p-5">
+                  <p className="mb-2 text-[9px] font-bold uppercase tracking-[.12em] text-habitech-green-dark">
+                    {project.category}
+                  </p>
+                  <h3 className="text-sm font-semibold tracking-tight sm:text-base">
+                    {project.title}
+                  </h3>
+                </div>
+              </article>
+            ))}
+          </div>
+          <a
+            className="mt-7 inline-flex items-center gap-2 text-[11px] font-extrabold text-habitech-green-dark"
+            href="#book"
+          >
+            Discuss your project <ArrowRight size={16} />
+          </a>
+        </div>
+      </section>
+      <ProjectVideoReel />
       <section
         className="bg-[#151b20] py-[72px] text-white sm:py-[100px]"
         id="why-us"
@@ -464,7 +608,7 @@ export function ElectricalHomepage() {
             </p>
             <p className="mb-5 max-w-[390px] text-xs leading-[1.8] text-[#b7bec3] sm:text-[13px]">
               We serve clients within and outside Lagos State, with coverage
-              shaped by each project’s requirements.
+              shaped by each project's requirements.
             </p>
             <Link
               className="inline-flex items-center gap-2 text-[11px] font-extrabold text-habitech-green-bright"
@@ -479,7 +623,7 @@ export function ElectricalHomepage() {
                 alt="Electrical service and power infrastructure"
                 className="h-full w-full object-cover object-[72%_42%]"
                 height={460}
-                src="/electrician-hero.png"
+                src="/habi4.jpeg"
                 width={700}
               />
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent pt-16">
@@ -523,7 +667,7 @@ export function ElectricalHomepage() {
         >
           <div className="md:pt-6">
             <p className="mb-3 text-[10px] font-extrabold uppercase tracking-[.16em] text-habitech-green-dark">
-              LET’S TALK ABOUT YOUR PROJECT
+              LET'S TALK ABOUT YOUR PROJECT
             </p>
             <h2 className="text-[clamp(42px,5vw,62px)] font-semibold leading-[1.04] tracking-[-.055em]">
               Need a power
@@ -532,7 +676,7 @@ export function ElectricalHomepage() {
             </h2>
             <p className="my-5 max-w-[360px] text-xs leading-[1.75] text-habitech-muted sm:text-[13px]">
               Request a quotation for electrical work, solar power, CCTV, or
-              water pumping. We’ll review your requirements and provide a
+              water pumping. We'll review your requirements and provide a
               detailed quote before work commences.
             </p>
             <a
@@ -554,7 +698,7 @@ export function ElectricalHomepage() {
               <a className="text-habitech-ink" href={`tel:${phone2}`}>
                 {phone2}
               </a>{" "}
-              ·{" "}
+              ‚·{" "}
               <a
                 className="break-all text-habitech-ink"
                 href="mailto:habitechpowerlimited@gmail.com"
@@ -606,6 +750,22 @@ export function ElectricalHomepage() {
             Powering Your World with Reliable Electrical Solutions.
           </p>
           <a
+            aria-label="Follow Habitech Power Limited on TikTok"
+            className="inline-flex items-center gap-2 text-xs font-bold text-habitech-green-bright transition hover:text-white"
+            href="https://www.tiktok.com/@habitechpower"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <svg
+              aria-hidden="true"
+              className="h-4 w-4 fill-current"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12.525.02c1.31-.02 2.61-.01 3.92-.02.08 1.53.63 2.8 1.64 3.7 1.1.95 2.5 1.39 3.92 1.52v4.27c-1.55-.05-3.1-.44-4.5-1.18-.61-.34-1.18-.73-1.74-1.14-.01 3.64.01 7.28-.02 10.91-.08 1.74-.66 3.48-1.71 4.87-1.66 2.31-4.55 3.82-7.42 3.57-1.62-.09-3.23-.65-4.52-1.63-2.15-1.62-3.47-4.3-3.43-6.99-.02-1.55.41-3.1 1.2-4.43 1.34-2.31 3.8-3.91 6.45-4.15 1.03-.1 2.07-.03 3.08.2.01 1.55-.04 3.1-.04 4.65-.69-.23-1.41-.42-2.14-.39-1.67.06-3.18 1.27-3.47 2.92-.2 1.3.28 2.68 1.34 3.49 1.05.82 2.6 1.02 3.83.51 1.32-.55 2.25-1.89 2.25-3.34.02-5.59-.01-11.18.02-16.77z" />
+            </svg>
+            TikTok
+          </a>
+          <a
             className="inline-flex items-center gap-2 text-xs font-bold text-habitech-green-bright"
             href={`tel:${phone1}`}
           >
@@ -617,11 +777,11 @@ export function ElectricalHomepage() {
           className={`${wrap} flex min-h-[47px] flex-col justify-center gap-0.5 border-t-[1px] border-black/30 py-2 text-[9px] text-[#879198] sm:flex-row sm:items-center sm:justify-between`}
         >
           <span>
-            © {new Date().getFullYear()} Habitech Power Limited · RC 9546738.
+            ‚© {new Date().getFullYear()} Habitech Power Limited ‚· RC 9546738.
             All rights reserved.
           </span>
           <span>
-            Alapere, Ketu, Lagos State, Nigeria · Projects across Nigeria
+            Alapere, Ketu, Lagos State, Nigeria ‚· Projects across Nigeria
           </span>
         </div>
       </footer>
