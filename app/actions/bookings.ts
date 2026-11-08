@@ -2,13 +2,15 @@
 
 import { db } from '@/lib/db'
 import { serviceBookings } from '@/lib/db/schema'
+import { ensureAdminTables } from '@/lib/admin-data'
+import { sql } from 'drizzle-orm'
 
 export type BookingState = {
   status: 'idle' | 'success' | 'error'
   message: string
 }
 
-const services = new Set([
+const fallbackServices = new Set([
   'Electrical installation',
   'Industrial electrical services',
   'Electrical maintenance and troubleshooting',
@@ -56,7 +58,15 @@ export async function submitBooking(
   if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { status: 'error', message: 'Please enter a valid email address.' }
   }
-  if (!services.has(service)) {
+  let serviceAllowed = fallbackServices.has(service)
+  try {
+    await ensureAdminTables()
+    const result = await db.execute(sql`SELECT 1 FROM site_services WHERE title = ${service} LIMIT 1`)
+    serviceAllowed = result.rows.length > 0 || service === 'Other electrical service'
+  } catch {
+    // Keep the existing booking flow usable while the catalogue database is unavailable.
+  }
+  if (!serviceAllowed) {
     return { status: 'error', message: 'Please choose an electrical service.' }
   }
   if (details.length > 2000) {

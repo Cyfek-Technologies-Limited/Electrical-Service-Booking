@@ -9,19 +9,11 @@ const photos = [
   "WhatsApp Image 2026-11-01 at 7.08.11 AM.jpeg",
   "WhatsApp Image 2026-11-01 at 7.08.41 AM.jpeg",
   "WhatsApp Image 2026-11-01 at 7.08.49 AM (1).jpeg",
-  "WhatsApp Image 2026-11-01 at 7.09.22 AM (2).jpeg",
-
   "WhatsApp Image 2026-11-01 at 7.09.46 AM.jpeg",
-  "WhatsApp Image 2026-11-01 at 7.09.52 AM.jpeg",
-  "WhatsApp Image 2026-11-01 at 7.11.13 AM.jpeg",
   "WhatsApp Image 2026-11-01 at 7.11.14 AM.jpeg",
-  "WhatsApp Image 2026-11-01 at 7.11.20 AM (1).jpeg",
   "WhatsApp Image 2026-11-01 at 7.11.20 AM (2).jpeg",
-  "WhatsApp Image 2026-11-01 at 7.11.21 AM (3).jpeg",
   "WhatsApp Image 2026-11-01 at 7.11.23 AM (1).jpeg",
   "WhatsApp Image 2026-11-01 at 7.11.23 AM (2).jpeg",
-  "WhatsApp Image 2026-11-01 at 7.11.24 AM (1).jpeg",
-  "WhatsApp Image 2026-11-01 at 7.11.24 AM (2).jpeg",
 ];
 
 const messages = [

@@ -21,6 +21,7 @@ import {
   Zap,
 } from "lucide-react";
 import { BookingForm } from "@/components/booking-form";
+import { HeroImageSlideshow } from "@/components/hero-image-slideshow";
 import { ProjectVideoReel } from "@/components/project-video-reel";
 import { ProjectPhotoSlideshow } from "@/components/project-photo-slideshow";
 import { SocialMediaPopover } from "@/components/social-media-popover";
@@ -102,12 +103,12 @@ const projects = [
     title: "Living room lighting",
     category: "Residential ‚· Interior lighting",
   },
-  {
-    image: "/projects/electrical-control-installation.jpeg",
-    alt: "Electrical control equipment connected with surface conduit",
-    title: "Control equipment installation",
-    category: "Electrical systems",
-  },
+  // {
+  //   image: "/projects/electrical-control-installation.jpeg",
+  //   alt: "Electrical control equipment connected with surface conduit",
+  //   title: "Control equipment installation",
+  //   category: "Electrical systems",
+  // },
   {
     image: "/projects/attic-conduit-installation.jpeg",
     alt: "Blue electrical conduits routed through a roof space",
@@ -138,20 +139,20 @@ const projects = [
     title: "Inverter and battery system",
     category: "Renewable energy ‚· Backup power",
   },
+  // {
+  //   image: "/projects/electrical-conduit-site-work.jpeg",
+  //   alt: "Electrical conduit work in progress on a building site",
+  //   title: "Conduit work in progress",
+  //   category: "Building services ‚· Electrical",
+  // },
+  // {
+  //   image: "/projects/building-electrical-project.jpeg",
+  //   alt: "Building project site during electrical infrastructure works",
+  //   title: "Building project works",
+  //   category: "Building services ‚· Electrical",
+  // },
   {
-    image: "/projects/electrical-conduit-site-work.jpeg",
-    alt: "Electrical conduit work in progress on a building site",
-    title: "Conduit work in progress",
-    category: "Building services ‚· Electrical",
-  },
-  {
-    image: "/projects/building-electrical-project.jpeg",
-    alt: "Building project site during electrical infrastructure works",
-    title: "Building project works",
-    category: "Building services ‚· Electrical",
-  },
-  {
-    image: "/projects/distribution-board-installation.jpeg",
+    image: "/WhatsApp Image 2026-11-01 at 7.11.23 AM (1).jpeg",
     alt: "Installed residential distribution board with circuit breakers",
     title: "Distribution board installation",
     category: "Electrical systems Safety",
@@ -205,15 +206,17 @@ function SiteHeader() {
           className="inline-flex flex-none items-center gap-2"
           href="#top"
         >
-          <Image
-            alt=""
-            aria-hidden="true"
-            className="h-16 w-16 object-contain sm:h-[73px] sm:w-[73px]"
-            height={60}
-            src="/habitech-logo.jpeg"
-            width={60}
-          />
-          <span className="flex flex-col text-lg font-extrabold leading-none tracking-tight sm:text-xl">
+          <span className="relative h-16 w-16 shrink-0 overflow-hidden bg-white sm:h-[73px] sm:w-[73px]">
+            <Image
+              alt=""
+              aria-hidden="true"
+              className="h-full w-full scale-150 object-contain"
+              height={60}
+              src="/habitech-logo.jpeg"
+              width={60}
+            />
+          </span>
+          <span className="flex flex-col text-xl font-extrabold leading-none tracking-tight sm:text-2xl">
             Habitech
             <span className="mt-1 text-[11px] font-medium uppercase tracking-[.09em] text-slate-300 sm:text-xs">
               Power Limited
@@ -290,14 +293,7 @@ function Hero() {
       className="relative isolate flex min-h-[670px] items-end overflow-hidden bg-[#182838] text-white md:min-h-[min(690px,calc(100svh_-_112px))] md:items-center"
       id="top"
     >
-      <Image
-        alt="Electrical power infrastructure"
-        className="-z-20 object-cover object-[65%_50%] md:object-[64%_43%]"
-        fill
-        priority
-        sizes="100vw"
-        src="/electrician-hero.png"
-      />
+      <HeroImageSlideshow />
       <div aria-hidden="true" className="hero-shade" />
       <div
         className={`${wrap} pb-[68px] pt-0 md:py-[80px] md:mb-0 mb-[4.6rem] md:pb-[88px]`}
@@ -426,7 +422,7 @@ function SectionHeading({
   );
 }
 
-function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
+function ServiceGrid({ commitments = false, items = services }: { commitments?: boolean; items?: {title:string;text:string;icon:typeof Zap}[] }) {
   if (commitments) {
     const cards = [
       [
@@ -473,7 +469,7 @@ function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
   }
   return (
     <div className="grid  grid-cols-2 gap-2.5 lg:grid-cols-4 lg:gap-[15px]">
-      {services.map(({ icon: Icon, title, text }, index) => (
+      {items.map(({ icon: Icon, title, text }, index) => (
         <article
           className="flex min-h-[226px] flex-col items-start shadow-md rounded-[10px] border-[1px] border-black/30 bg-white p-3 transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.08)] sm:min-h-[236px] sm:px-[22px] sm:pt-6 sm:pb-[22px]"
           key={title}
@@ -504,7 +500,11 @@ function ServiceGrid({ commitments = false }: { commitments?: boolean }) {
   );
 }
 
-export function ElectricalHomepage() {
+const iconByName: Record<string, typeof Zap> = { Zap, Building2, Wrench, Sun, PanelsTopLeft, Droplets, Lightbulb, ClipboardCheck, Camera, BadgeCheck };
+
+export function ElectricalHomepage({ serviceItems, projectItems }: { serviceItems?: {title:string;description:string;icon:string}[]; projectItems?: {id:string;title:string;category:string;image:string;alt:string}[] }) {
+  const visibleServices = serviceItems?.map((item) => ({ title:item.title, text:item.description, icon:iconByName[item.icon] ?? Zap })) ?? services;
+  const visibleProjects = projectItems ?? projects;
   return (
     <main className="min-h-screen overflow-hidden bg-white text-[15px] leading-[1.55] text-habitech-ink [&_a]:no-underline">
       <SiteHeader />
@@ -520,7 +520,7 @@ export function ElectricalHomepage() {
             accent="built around your needs."
             summary="From electrical installation and industrial maintenance to solar power and water pumping, we deliver solutions tailored to your project."
           />
-          <ServiceGrid />
+          <ServiceGrid items={visibleServices} />
         </div>
       </section>
 
@@ -547,16 +547,17 @@ export function ElectricalHomepage() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-            {projects.map((project) => (
+            {visibleProjects.map((project) => (
               <article
                 className="group overflow-hidden rounded-[10px] border-[1px] border-black/30 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.1)]"
-                key={project.image}
+                key={'id' in project ? project.id : project.image}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f3ef]">
                   <Image
                     alt={project.alt}
                     className="object-cover transition duration-500 group-hover:scale-[1.03]"
                     fill
+                    unoptimized
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     src={project.image}
                   />
@@ -719,7 +720,7 @@ export function ElectricalHomepage() {
               Alapere, Ketu, Lagos State, Nigeria
             </div>
           </div>
-          <BookingForm />
+          <BookingForm services={serviceItems?.map((item) => item.title)} />
         </div>
       </section>
       <footer className="bg-[#101518] text-white">
