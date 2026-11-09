@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
+import Image from 'next/image'
 import { desc, sql } from 'drizzle-orm'
-import { Activity, ArrowUpRight, BriefcaseBusiness, ClipboardList, FolderKanban, LayoutDashboard, LogOut, Plus, Settings2, ShieldCheck, Zap } from 'lucide-react'
+import { Activity, ArrowUpRight, BriefcaseBusiness, ClipboardList, FolderKanban, LayoutDashboard, LogOut, Plus, Settings2, ShieldCheck } from 'lucide-react'
 import { db } from '@/lib/db'
 import { serviceBookings } from '@/lib/db/schema'
 import { ensureAdminTables } from '@/lib/admin-data'
@@ -36,7 +37,7 @@ export default async function AdminPage() {
   return <main className="min-h-screen bg-[#f4f6f3] text-[#1c252d]">
     <div className="mx-auto flex min-h-screen max-w-[1600px]">
       <aside className="hidden w-[238px] shrink-0 flex-col border-r border-black/[0.07] bg-[#17232d] px-4 py-5 text-white lg:flex">
-        <a className="mb-10 flex items-center gap-3 px-2" href="/" aria-label="Habitech homepage"><span className="grid h-10 w-10 place-items-center rounded-xl bg-[#58b51b] text-[#17232d]"><Zap size={22} fill="currentColor"/></span><span><b className="block text-sm">HABITECH</b><small className="text-[10px] uppercase tracking-[.15em] text-white/55">Power Limited</small></span></a>
+        <a className="mb-10 flex items-center gap-3 px-2" href="/" aria-label="Habitech homepage"><span className="relative grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl bg-white p-0.5"><Image alt="Habitech Power Limited logo" className="object-contain" fill priority sizes="44px" src="/habitech-logo.jpeg"/></span><span><b className="block text-sm">HABITECH</b><small className="text-[10px] uppercase tracking-[.15em] text-white/55">Power Limited</small></span></a>
         <p className="px-3 text-[10px] font-bold uppercase tracking-[.18em] text-white/40">Workspace</p>
         <nav className="mt-3 grid gap-1 text-sm">
           <a className="flex items-center gap-3 rounded-xl bg-[#58b51b] px-3 py-3 font-semibold text-[#14200f]" href="#overview"><LayoutDashboard size={17}/>Overview</a>

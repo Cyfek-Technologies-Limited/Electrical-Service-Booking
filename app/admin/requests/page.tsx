@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Image from "next/image";
 import { desc } from "drizzle-orm";
 import {
   ArrowLeft,
@@ -8,7 +9,6 @@ import {
   LogOut,
   Settings2,
   ShieldCheck,
-  Zap,
 } from "lucide-react";
 import { updateBookingStatus, adminLogout } from "@/app/actions/admin";
 import { isAdmin } from "@/lib/admin-auth";
@@ -44,8 +44,8 @@ export default async function ServiceRequestsPage() {
             href="/"
             aria-label="Habitech homepage"
           >
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#58b51b] text-[#17232d]">
-              <Zap size={22} fill="currentColor" />
+            <span className="relative grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-xl bg-white p-0.5">
+              <Image alt="Habitech Power Limited logo" className="object-contain" fill priority sizes="44px" src="/habitech-logo.jpeg" />
             </span>
             <span>
               <b className="block text-sm">HABITECH</b>
