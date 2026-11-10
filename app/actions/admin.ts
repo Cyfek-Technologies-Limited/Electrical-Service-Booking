@@ -42,7 +42,7 @@ export async function removeProject(form: FormData) {
 export async function updateBookingStatus(form: FormData) {
   await requireAdmin()
   const status=String(form.get('status')??'')
-  if(!['new','contacted','completed'].includes(status)) throw new Error('Invalid request status')
+  if(!['new','contacted','in_progress','completed'].includes(status)) throw new Error('Invalid request status')
   await db.update((await import('@/lib/db/schema')).serviceBookings).set({status}).where(sql`id = ${String(form.get('id')??'')}`)
   revalidatePath('/admin')
 }

@@ -226,7 +226,8 @@ export default async function ServiceRequestsPage() {
                           name="status"
                         >
                           <option value="new">New</option>
-                          <option value="contacted">Contacted</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="in_progress">In progress</option>
                           <option value="completed">Completed</option>
                         </select>
                         <button className="min-h-9 rounded-lg bg-[#17232d] px-3 text-xs font-semibold text-white">
