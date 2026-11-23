@@ -239,6 +239,9 @@ function SiteHeader() {
           <a className={linkClass} href="#why-us">
             About us
           </a>
+          <Link className={linkClass} href="/ask-ai">
+            Ask AI
+          </Link>
           {/* <a className={linkClass} href="#service-area">
             Service areas
           </a> */}
@@ -268,6 +271,7 @@ function SiteHeader() {
               ["Our work", "#projects"],
               ["About us", "#why-us"],
               ["Service areas", "#service-area"],
+              ["Ask AI", "/ask-ai"],
               ["Request a quote", "#book"],
             ].map(([label, href]) => (
               <a
