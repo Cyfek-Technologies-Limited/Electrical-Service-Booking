@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import type { FormEvent, KeyboardEvent } from 'react'
 import { ArrowLeft, ArrowUp, Bot, CircleHelp, Lightbulb, LoaderCircle, Plus, ShieldCheck, UserRound, Zap } from 'lucide-react'
+import { MarkdownMessage } from '@/components/markdown-message'
 
 type Message = { id: number; role: 'user' | 'assistant'; content: string }
 
@@ -106,7 +107,7 @@ export function AskAiChat() {
             <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-7">
               {messages.map((message) => <article className={`flex gap-3 ${message.role === 'user' ? 'flex-row-reverse' : ''}`} key={message.id}>
                 <span className={`mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full ${message.role === 'assistant' ? 'bg-[#eaf5e2] text-[#438516]' : 'bg-[#17232d] text-white'}`}>{message.role === 'assistant' ? <Bot size={17}/> : <UserRound size={16}/>}</span>
-                <div className={`max-w-[88%] rounded-2xl px-4 py-3 text-sm leading-7 ${message.role === 'assistant' ? 'rounded-tl-md border border-black/10 bg-white text-[#26333b] shadow-sm' : 'rounded-tr-md bg-[#17232d] text-white'}`}><p className="m-0 whitespace-pre-wrap">{message.content}</p></div>
+                <div className={`max-w-[88%] rounded-2xl px-4 py-3 ${message.role === 'assistant' ? 'rounded-tl-md border border-black/10 bg-white text-[#26333b] shadow-sm' : 'rounded-tr-md bg-[#17232d] text-white'}`}>{message.role === 'assistant' ? <MarkdownMessage content={message.content}/> : <p className="m-0 whitespace-pre-wrap text-sm leading-7">{message.content}</p>}</div>
               </article>)}
               {pending && <div className="flex gap-3"><span className="grid h-8 w-8 place-items-center rounded-full bg-[#eaf5e2] text-[#438516]"><Bot size={17}/></span><div aria-label="Assistant is thinking" className="flex items-center gap-2 rounded-2xl rounded-tl-md border border-black/10 bg-white px-4 py-3 text-xs text-slate-500 shadow-sm"><LoaderCircle className="animate-spin text-[#58b51b]" size={16}/>Thinking through your question</div></div>}
               {error && <div className="ml-11 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs leading-relaxed text-red-800" role="alert">{error}</div>}
