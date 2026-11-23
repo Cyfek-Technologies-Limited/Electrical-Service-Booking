@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { FormEvent, KeyboardEvent } from 'react'
 import { ArrowLeft, ArrowUp, Bot, CircleHelp, Lightbulb, LoaderCircle, Plus, ShieldCheck, UserRound, Zap } from 'lucide-react'
 
 type Message = { id: number; role: 'user' | 'assistant'; content: string }
@@ -21,7 +22,12 @@ export function AskAiChat() {
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
-  useEffect(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }), [messages, pending])
+  useEffect(() => {
+    const element = bottomRef.current
+    if (element && typeof element.scrollIntoView === 'function') {
+      element.scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }
+  }, [messages, pending])
 
   async function sendMessage(value = draft) {
     const content = value.trim()
