@@ -77,7 +77,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const model = process.env.OPENAI_MODEL || 'gpt-6.2-luna'
+    const model = process.env.OPENAI_MODEL || 'gpt-5.4-mini'
     const response = await fetch('https://api.openai.com/v1/responses', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
