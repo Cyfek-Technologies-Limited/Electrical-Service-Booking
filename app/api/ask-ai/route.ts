@@ -16,6 +16,22 @@ function getText(output: unknown) {
   ).join('\n').trim()
 }
 
+async function getProviderError(response: Response) {
+  try {
+    const payload = await response.json()
+    return payload && typeof payload === 'object' ? (payload as { error?: { type?: unknown; code?: unknown; param?: unknown } }).error : undefined
+  } catch {
+    return undefined
+  }
+}
+
+function providerErrorMessage(status: number) {
+  if (status === 401) return 'The AI service could not authenticate. Please contact the site administrator.'
+  if (status === 403 || status === 404) return 'The AI model is not available for this account. Please contact the site administrator.'
+  if (status === 429) return 'The AI service is at its current usage limit. Please try again later.'
+  return 'The assistant could not respond right now. Please try again shortly.'
+}
+
 export async function POST(request: Request) {
   const key = process.env.OPENAI_API_KEY
   if (!key) {
@@ -61,13 +77,14 @@ export async function POST(request: Request) {
   }
 
   try {
+    const model = process.env.OPENAI_MODEL || 'gpt-6.2-luna'
     const response = await fetch('https://api.openai.com/v1/responses', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       cache: 'no-store',
       signal: AbortSignal.timeout(45_000),
       body: JSON.stringify({
-        model: process.env.OPENAI_MODEL || 'gpt-6.2-luna',
+        model,
         instructions,
         input: messages.map(({ role, content }) => ({ role, content })),
         max_output_tokens: 1000,
@@ -75,13 +92,32 @@ export async function POST(request: Request) {
       }),
     })
     if (!response.ok) {
-      return NextResponse.json({ error: 'The assistant could not respond right now. Please try again shortly.' }, { status: 502 })
+      const providerError = await getProviderError(response)
+      console.error('[ask-ai] OpenAI request failed', {
+        status: response.status,
+        requestId: response.headers.get('x-request-id'),
+        model,
+        errorType: typeof providerError?.type === 'string' ? providerError.type : undefined,
+        errorCode: typeof providerError?.code === 'string' ? providerError.code : undefined,
+        errorParam: typeof providerError?.param === 'string' ? providerError.param : undefined,
+      })
+      return NextResponse.json({ error: providerErrorMessage(response.status) }, { status: 502 })
     }
     const result = await response.json()
     const answer = getText(result.output)
-    if (!answer) return NextResponse.json({ error: 'The assistant returned an empty response. Please try asking another way.' }, { status: 502 })
+    if (!answer) {
+      console.error('[ask-ai] OpenAI response contained no output text', {
+        requestId: response.headers.get('x-request-id'),
+        model,
+        responseStatus: typeof result.status === 'string' ? result.status : undefined,
+      })
+      return NextResponse.json({ error: 'The assistant returned an empty response. Please try asking another way.' }, { status: 502 })
+    }
     return NextResponse.json({ answer })
-  } catch {
+  } catch (error) {
+    console.error('[ask-ai] Request failed before receiving an OpenAI response', {
+      errorName: error instanceof Error ? error.name : 'UnknownError',
+    })
     return NextResponse.json({ error: 'We could not reach the assistant. Please check your connection and try again.' }, { status: 502 })
   }
 }
