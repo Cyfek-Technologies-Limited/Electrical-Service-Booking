@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { FormEvent, KeyboardEvent, useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowUp, Bot, Check, CircleHelp, Lightbulb, LoaderCircle, Plus, ShieldCheck, Sparkles, UserRound, Zap } from 'lucide-react'
+import { ArrowLeft, ArrowUp, Bot, CircleHelp, Lightbulb, LoaderCircle, Plus, ShieldCheck, UserRound, Zap } from 'lucide-react'
 
 type Message = { id: number; role: 'user' | 'assistant'; content: string }
 
@@ -89,8 +89,7 @@ export function AskAiChat() {
         <section className={`flex flex-1 flex-col ${messages.length ? 'py-8' : 'justify-center py-10'}`}>
           {messages.length === 0 ? (
             <div className="mx-auto w-full max-w-2xl text-center">
-              <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[#eaf5e2] text-[#438516] shadow-sm"><Sparkles size={25}/></span>
-              <p className="mb-2 mt-6 text-[11px] font-bold uppercase tracking-[.18em] text-[#438516]">Habitech Power Limited</p>
+              <p className="mb-2 text-[11px] font-bold uppercase tracking-[.18em] text-[#438516]">Habitech Power Limited</p>
               <h1 className="m-0 text-3xl font-semibold tracking-tight sm:text-4xl">What can I help you with?</h1>
               <p className="mx-auto mb-8 mt-3 max-w-lg text-sm leading-relaxed text-slate-500">Ask about electrical systems, solar power, inverters, maintenance, or your next project.</p>
               <div className="grid gap-3 text-left sm:grid-cols-3">

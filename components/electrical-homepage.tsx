@@ -554,7 +554,7 @@ export function ElectricalHomepage({ serviceItems, projectItems }: { serviceItem
             {visibleProjects.map((project) => (
               <article
                 className="group overflow-hidden rounded-[10px] border-[1px] border-black/30 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-[0_14px_34px_rgba(15,22,28,.1)]"
-                key={'id' in project ? project.id : project.image}
+                key={'id' in project && typeof project.id === 'string' ? project.id : project.image}
               >
                 <div className="relative aspect-[4/3] overflow-hidden bg-[#f1f3ef]">
                   <Image
